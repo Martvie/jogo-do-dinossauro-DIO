@@ -18,6 +18,8 @@ document.addEventListener('keypress', (event) => {
             jump()
             jumpSound.play()
         }
+    } else if (event.code === "KeyR") {
+        reload()
     }
 })
 
@@ -62,12 +64,17 @@ function creatCactus() {
         } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
             //gameover
             clearInterval(leftInterval)
-            document.body.innerHTML = "<h1 class='gameover'>FIM DE JOGO!</ h1>"
+            document.body.innerHTML = "<h1 class='gameover'>FIM DE JOGO!</ h1> <p class='message'> Para Recomeçar Pressione R</p>"
+                                        
         } else {
-                    cactusPosition -= 10
+            cactusPosition -= 10
             cactus.style.left = `${cactusPosition}px`
         }
     }, 25);
 
-                setTimeout(creatCactus, randomTime);
+    setTimeout(creatCactus, randomTime);
+}
+
+function reload() {
+    window.location.reload()
 }
