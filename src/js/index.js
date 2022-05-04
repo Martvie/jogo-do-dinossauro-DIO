@@ -1,5 +1,10 @@
 const dino = document.querySelector('.dino')
 const background = document.querySelector('.background')
+const displayWidth = document.querySelector('.background').clientWidth
+
+//pulo do dinossauro
+let position = 0
+
 let jumping = false
 creatCactus()
 
@@ -12,7 +17,7 @@ document.addEventListener('keypress', (event) => {
 })
 
 function jump() {
-    let position = 0
+
     jumping = true
     let upInterval = setInterval(() => {
         if (position >= 150) {
@@ -35,9 +40,29 @@ function jump() {
 
 function creatCactus() {
     let cactus = document.createElement('div')
-    cacutus.classList.add('cactus')
-    let cactusPosition = 1000
-    cactus.style.left = `${cactusPosition} px`
+    cactus.classList.add('cactus')
+
+    let randomTime = Math.floor(Math.random() * 6000)
+
+    let cactusPosition = displayWidth - 60
+    cactus.style.left = `${cactusPosition}px`
 
     background.appendChild(cactus)
+
+    let leftInterval = setInterval(() => {
+
+        if (cactusPosition < -60) {
+            clearInterval(leftInterval)
+            background.removeChild(cactus)
+        } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
+            //gameover
+            clearInterval(leftInterval)
+            document.body.innerHTML = "<h1 class='gameover'>FIM DE JOGO</ h1>"
+        } else {
+                    cactusPosition -= 10
+            cactus.style.left = `${cactusPosition}px`
+        }
+    }, 25);
+
+                setTimeout(creatCactus, randomTime);
 }
