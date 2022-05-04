@@ -1,0 +1,21 @@
+.background {
+    position: relative;
+    height: 100vh;
+}
+
+.dino {
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+    background-image:  url(../images/dino.png);
+    position: absolute;
+    bottom: 0;
+}
+
+.cactus {
+    width: 60px;
+    height: 60px;
+    background-image:  url(../images/cactus.png);
+    position: absolute;
+    bottom: 0;
+}
